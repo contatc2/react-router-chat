@@ -35,8 +35,7 @@ const middlewares = composeEnhancers(applyMiddleware(logger, reduxPromise));
 const initialState = {
   messages: [],
   channels: ['general', 'london', 'react'],
-  currentUser:`anonymous${Math.floor(10 + (Math.random() * 90))}`,
-  // currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`
 };
 
 initialState.messages = [
