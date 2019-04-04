@@ -5,6 +5,9 @@ import { Provider } from 'react-redux';
 import {
   createStore, combineReducers, applyMiddleware, compose
 } from 'redux';
+import { BrowserRouter as Router, Route, Redirect, Switch }
+from 'react-router-dom';
+import { createHistory as history } from 'history';
 import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
 
@@ -34,7 +37,8 @@ const middlewares = composeEnhancers(applyMiddleware(logger, reduxPromise));
 const initialState = {
   messages: [],
   channels: ['general', 'london', 'react'],
-  currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  currentUser:`anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  // currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
 
 };
@@ -54,7 +58,12 @@ initialState.messages = [
 
 ReactDOM.render(
   <Provider store={createStore(reducers, initialState, middlewares)}>
-    <App />
+    <Router history={history}>
+      <Switch>
+        <Route path="/:channel" component={App} />
+        <Redirect from="/" to="/general" />
+      </Switch>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
