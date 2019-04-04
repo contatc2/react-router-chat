@@ -1,5 +1,4 @@
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
-export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const MESSAGE_POSTED = 'MESSAGE_POSTED';
 
 
@@ -28,11 +27,4 @@ export function createMessage(channel, author, content) {
     type: MESSAGE_POSTED,
     payload: promise
   }
-}
-
-export function selectChannel(channel) {
-  return {
-    type: SELECT_CHANNEL,
-    payload: channel
-  };
 }

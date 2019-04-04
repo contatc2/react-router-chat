@@ -7,7 +7,7 @@ import {
 } from 'redux';
 import { BrowserRouter as Router, Route, Redirect, Switch }
 from 'react-router-dom';
-import { createHistory as history } from 'history';
+import { createBrowserHistory as history } from 'history';
 import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
 
@@ -18,7 +18,6 @@ import App from './components/app';
 import './stylesheets/application.scss';
 
 import MessagesReducer from './reducers/messages_reducer';
-import SelectChannel from './reducers/select_channel_reducer';
 
 const identityReducer = (state = null) => state;
 
@@ -28,7 +27,6 @@ const reducers = combineReducers({
   messages: MessagesReducer,
   channels: identityReducer,
   currentUser: identityReducer,
-  selectedChannel: SelectChannel
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -39,8 +37,6 @@ const initialState = {
   channels: ['general', 'london', 'react'],
   currentUser:`anonymous${Math.floor(10 + (Math.random() * 90))}`,
   // currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
-  selectedChannel: 'general'
-
 };
 
 initialState.messages = [

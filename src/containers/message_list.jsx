@@ -27,14 +27,14 @@ class MessageList extends React.Component {
   }
 
   fetchMessages = () => {
-    this.props.fetchMessages(this.props.selectedChannel);
+    this.props.fetchMessages(this.props.channelFromParams);
   }
 
   render() {
     return (
       <div className='channel-container'>
         <div className="channel-title">
-          <span>Channel #{this.props.selectedChannel}</span>
+          <span>Channel #{this.props.channelFromParams}</span>
         </div>
         <div
           className="channel-content"
@@ -42,7 +42,7 @@ class MessageList extends React.Component {
         >
          { this.props.messages.map(message => <Message message={message} key={message.created_at} />)}
         </div>
-        <MessageForm />
+        <MessageForm channelFromParams={this.props.channelFromParams} />
       </div>
     );
   }
@@ -57,8 +57,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    messages: state.messages,
-    selectedChannel: state.selectedChannel
+    messages: state.messages
   };
 }
 
